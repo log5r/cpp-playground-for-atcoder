@@ -80,15 +80,15 @@ include CMakeFiles/Playground.dir/flags.make
 CMakeFiles/Playground.dir/main.cpp.o: CMakeFiles/Playground.dir/flags.make
 CMakeFiles/Playground.dir/main.cpp.o: ../main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/judau/CLionProjects/Playground/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Playground.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Playground.dir/main.cpp.o -c /Users/judau/CLionProjects/Playground/main.cpp
+	/usr/local/Cellar/gcc/10.2.0/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Playground.dir/main.cpp.o -c /Users/judau/CLionProjects/Playground/main.cpp
 
 CMakeFiles/Playground.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Playground.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/judau/CLionProjects/Playground/main.cpp > CMakeFiles/Playground.dir/main.cpp.i
+	/usr/local/Cellar/gcc/10.2.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/judau/CLionProjects/Playground/main.cpp > CMakeFiles/Playground.dir/main.cpp.i
 
 CMakeFiles/Playground.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Playground.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/judau/CLionProjects/Playground/main.cpp -o CMakeFiles/Playground.dir/main.cpp.s
+	/usr/local/Cellar/gcc/10.2.0/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/judau/CLionProjects/Playground/main.cpp -o CMakeFiles/Playground.dir/main.cpp.s
 
 # Object files for target Playground
 Playground_OBJECTS = \

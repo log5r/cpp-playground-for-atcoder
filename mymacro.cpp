@@ -13,7 +13,18 @@ using namespace std;
 #define UPDATE_NUM(current, challenger) if (challenger > current) current = challenger
 
 
-void comb(vector<vector<long long int> > &v) {
+// 順列数を出力
+
+int64_t perm_count(int64_t n, int64_t k) {
+    int64_t answer = n;
+    for (int i = 2; i <= k; ++i) {
+        answer *= (n - i + 1);
+    }
+    return answer;
+}
+
+// 組み合わせ数を出力
+void comb(vector<vector<int64_t> > &v) {
     for (int i = 0; i < v.size(); i++) {
         v[i][0] = 1;
         v[i][i] = 1;
@@ -24,9 +35,8 @@ void comb(vector<vector<long long int> > &v) {
         }
     }
 }
-
-long long comb_count(long long n, long long r) {
-    vector<vector<long long>> v(n + 1, vector<long long>(n + 1, 0));
+int64_t comb_count(int64_t n, int64_t r) {
+    vector<vector<int64_t>> v(n + 1, vector<int64_t>(n + 1, 0));
     comb(v);
     return v[n][r];
 }

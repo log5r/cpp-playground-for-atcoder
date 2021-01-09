@@ -62,11 +62,13 @@ ll gcd_ext(ll a, ll b, ll &x, ll &y) {
     y -= a / b * x;
     return d;
 }
+
 // 一時不定方程式 ax + by = c を解く用(上もセット)
 bool solve_id_eq(ll a, ll b, ll &x, ll &y, ll c) {
     ll res = gcd_ext(a, b, x, y);
     if (c % res) {
-        x = 0; y = 0;
+        x = 0;
+        y = 0;
         return false;
     }
     ll s = c / res;
@@ -96,6 +98,7 @@ void comb(vector<vector<ll> > &v) {
         }
     }
 }
+
 ll comb_count(ll n, ll r) {
     vector<vector<ll>> v(n + 1, vector<ll>(n + 1, 0));
     comb(v);
@@ -119,8 +122,55 @@ vector<vector<int>> comb(int N, int K) {
 
 
 //素数判定
+bool is_prime(long long N) {
+    if (N == 1) return false;
+    for (long long i = 2; i * i <= N; ++i) {
+        if (N % i == 0) return false;
+    }
+    return true;
+}
 
+// 約数列挙
+vector<ll> factors(ll n) {
+    vector<ll> res;
+    for (ll i = 1; i * i <= n; ++i) {
+        if (n % i == 0) {
+            res.push_back(i);
+            if (n / i != i) res.push_back(n / i);
+        }
+    }
+    sort(res.begin(), res.end());
+    return res;
+}
 
+// 素因数分解
+vector<pair<ll, ll> > prime_factorize(ll N) {
+    vector<pair<long long, long long> > res;
+    for (ll a = 2; a * a <= N; ++a) {
+        if (N % a != 0) continue;
+        ll ex = 0;
+        while (N % a == 0) {
+            ++ex;
+            N /= a;
+        }
+        res.emplace_back(a, ex);
+    }
+    if (N != 1) res.emplace_back(N, 1);
+    return res;
+}
+
+// python の modpow
+template <typename T>
+T mod_pow(T base, T exp, T modulus) {
+    base %= modulus;
+    T result = 1;
+    while (exp > 0) {
+        if (exp & 1) result = (result * base) % modulus;
+        base = (base * base) % modulus;
+        exp >>= 1;
+    }
+    return result;
+}
 
 
 int main() {
@@ -130,5 +180,5 @@ int main() {
 
     ll x, y;
     ll res = solve_id_eq(111, 30, x, y, 11);
-    cout << x << ", " << y << "(res: " << res << ")"  << endl;
+    cout << x << ", " << y << "(res: " << res << ")" << endl;
 }

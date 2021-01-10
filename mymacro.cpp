@@ -9,14 +9,14 @@ using m22_ll = pair<p_ll, p_ll>;
 // ループ
 #define rep(i, n) for(int i=0, i##_len=(n); i<i##_len; ++i)
 #define repr(vec) for (const auto&it: vec)
+#define until(cond) while(!cond)
 
 // 配列関連
 #define all(x) (x).begin(),(x).end()
-#define until(cond) while(!cond)
-#define MERGE(v, a) v.insert(v.end(), all(a))
 #define SORT(x) sort(all(x))
 #define SORT_REVERSE(x) SORT(x);reverse(all(x))
 #define SORT_UNIQUE(v) SORT(v);v.erase(unique(v.begin(), v.end()), v.end())
+#define MERGE(v, a) v.insert(v.end(), all(a))
 
 // 行列計算用
 #define make_m22(a, b, c, d) make_pair(make_pair(a,b), make_pair(c,d))
@@ -26,6 +26,7 @@ using m22_ll = pair<p_ll, p_ll>;
 
 // デバッグ出力用
 #define pln(text) cout << text << endl
+#define dbg(label, text) cout << label << ": " << text << endl
 
 
 /*  ここから下は関数  */

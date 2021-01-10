@@ -3,17 +3,33 @@
 using namespace std;
 using ll = int64_t;
 using ull = uint64_t;
+using p_ll = pair<ll, ll>;
+using m22_ll = pair<p_ll, p_ll>;
 
-#define pln(text) cout << text << endl
+// ループ
 #define rep(i, n) for(int i=0, i##_len=(n); i<i##_len; ++i)
 #define repr(vec) for (const auto&it: vec)
+
+// 配列関連
 #define all(x) (x).begin(),(x).end()
 #define until(cond) while(!cond)
 #define MERGE(v, a) v.insert(v.end(), all(a))
 #define SORT(x) sort(all(x))
 #define SORT_REVERSE(x) SORT(x);reverse(all(x))
 #define SORT_UNIQUE(v) SORT(v);v.erase(unique(v.begin(), v.end()), v.end())
+
+// 行列計算用
+#define make_m22(a, b, c, d) make_pair(make_pair(a,b), make_pair(c,d))
+
+// 必要かどうか微妙
 #define UPDATE_NUM(current, challenger) if (challenger > current) current = challenger
+
+// デバッグ出力用
+#define pln(text) cout << text << endl
+
+
+/*  ここから下は関数  */
+
 
 // 最大公約数
 ll gcd(ll a, ll b) {

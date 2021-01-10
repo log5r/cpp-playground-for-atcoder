@@ -2,6 +2,7 @@
 
 using namespace std;
 using ll = int64_t;
+using ull = uint64_t;
 
 #define pln(text) cout << text << endl
 #define rep(i, n) for(int i=0, i##_len=(n); i<i##_len; ++i)
@@ -159,17 +160,78 @@ vector<pair<ll, ll> > prime_factorize(ll N) {
     return res;
 }
 
-// python の modpow
-template <typename T>
-T mod_pow(T base, T exp, T modulus) {
+// 繰り返し二乗法
+ll mod_pow(ll base, ll exp, ll modulus) {
     base %= modulus;
-    T result = 1;
+    ll result = 1;
     while (exp > 0) {
         if (exp & 1) result = (result * base) % modulus;
         base = (base * base) % modulus;
         exp >>= 1;
     }
     return result;
+}
+
+// フィボナッチ数（積み上げ）
+ull fibonacci(ull n) {
+    ull p = 0;
+    ull q = 1;
+    if (n == 0) return p;
+    if (n == 1) return q;
+    for (int i = 0; i < n - 1; i++){
+        ll buf = q;
+        q = p + q;
+        p = buf;
+    }
+    return q;
+}
+
+// リュカ数（積み上げ）
+ull lucas(unsigned int n) {
+    ull p = 2;
+    ull q = 1;
+    if (n == 0) return p;
+    if (n == 1) return q;
+    for (int i = 0; i < n - 1; i++){
+        ll buf = q;
+        q = p + q;
+        p = buf;
+    }
+    return q;
+}
+
+// 平方行列の掛け算
+m22_ll prod_m22(m22_ll x, m22_ll y) {
+    return make_m22(
+            x.first.first * y.first.first + x.first.second * y.second.first,
+            x.first.first * y.first.second + x.first.second * y.second.second,
+            x.second.first * y.first.first + x.second.second * y.second.first,
+            x.second.first * y.first.second + x.second.second * y.second.second
+    );
+}
+
+// 平方行列のべき乗
+m22_ll pow_m22(m22_ll matrix, ull ext) {
+    if (ext == 0) return make_m22(1, 0, 0, 1);
+    else if (ext == 1) return matrix;
+    else if (ext % 2 == 0) {
+        m22_ll buf = prod_m22(matrix, matrix);
+        return pow_m22(buf, ext / 2);
+    } else {
+        m22_ll buf1 = prod_m22(matrix, matrix);
+        return prod_m22(matrix, pow_m22(buf1, ext / 2));
+    }
+}
+
+// 平方行列を文字列にする
+string m22_ll_to_string(m22_ll matrix) {
+    return "[[" + to_string(matrix.first.first) + ", " + to_string(matrix.first.second) + "]"
+           + "[" + to_string(matrix.second.first) + ", " + to_string(matrix.second.second) + "]]";
+}
+
+// フィボナッチ数（行列計算）
+ull fibonacci_m22(ull n) {
+    return pow_m22(make_m22(0, 1, 1, 1), n).first.second;
 }
 
 

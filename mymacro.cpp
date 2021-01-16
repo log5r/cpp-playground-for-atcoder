@@ -116,11 +116,24 @@ void comb(vector<vector<ll> > &v) {
         }
     }
 }
-
 ll comb_count(ll n, ll r) {
     vector<vector<ll>> v(n + 1, vector<ll>(n + 1, 0));
     comb(v);
     return v[n][r];
+}
+
+// 組み合わせ数を出力_2 （速いかもしれない）
+ll comb_count_2(ll n, ll r) {
+    if (r > n) return 0;
+    if (r * 2 > n) r = n - r;
+    if (r == 0) return 1;
+
+    ll result = n;
+    for (ll i = 2; i <= r; ++i) {
+        result *= (n - i + 1);
+        result /= i;
+    }
+    return result;
 }
 
 // combination リスト出力用に使えるかもしれない

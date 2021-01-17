@@ -2,17 +2,36 @@
 
 using namespace std;
 using ll = int64_t;
+using ull = uint64_t;
+using p_ll = pair<ll, ll>;
+using m22_ll = pair<p_ll, p_ll>;
 
-#define pln(text) cout << text << endl
+// ループ
 #define rep(i, n) for(int i=0, i##_len=(n); i<i##_len; ++i)
+#define rrep(i, n) for(int i=1, i##_len=(n); i<=i##_len; ++i)
 #define repr(vec) for (const auto&it: vec)
-#define all(x) (x).begin(),(x).end()
 #define until(cond) while(!cond)
-#define MERGE(v, a) v.insert(v.end(), all(a))
+
+// 配列関連
+#define all(x) (x).begin(),(x).end()
 #define SORT(x) sort(all(x))
 #define SORT_REVERSE(x) SORT(x);reverse(all(x))
 #define SORT_UNIQUE(v) SORT(v);v.erase(unique(v.begin(), v.end()), v.end())
+#define MERGE(v, a) v.insert(v.end(), all(a))
+
+// 行列計算用
+#define make_m22(a, b, c, d) make_pair(make_pair(a,b), make_pair(c,d))
+
+// 必要かどうか微妙
 #define UPDATE_NUM(current, challenger) if (challenger > current) current = challenger
+
+// デバッグ出力用
+#define pln(text) cout << text << endl
+#define dbg(label, text) cout << label << ": " << text << endl
+
+
+/*  ここから下は関数  */
+
 
 // 最大公約数
 ll gcd(ll a, ll b) {
@@ -98,11 +117,24 @@ void comb(vector<vector<ll> > &v) {
         }
     }
 }
-
 ll comb_count(ll n, ll r) {
     vector<vector<ll>> v(n + 1, vector<ll>(n + 1, 0));
     comb(v);
     return v[n][r];
+}
+
+// 組み合わせ数を出力_2 （速いかもしれない）
+ll comb_count_2(ll n, ll r) {
+    if (r > n) return 0;
+    if (r * 2 > n) r = n - r;
+    if (r == 0) return 1;
+
+    ll result = n;
+    for (ll i = 2; i <= r; ++i) {
+        result *= (n - i + 1);
+        result /= i;
+    }
+    return result;
 }
 
 // combination リスト出力用に使えるかもしれない
@@ -159,17 +191,78 @@ vector<pair<ll, ll> > prime_factorize(ll N) {
     return res;
 }
 
-// python の modpow
-template <typename T>
-T mod_pow(T base, T exp, T modulus) {
+// 繰り返し二乗法
+ll mod_pow(ll base, ll exp, ll modulus) {
     base %= modulus;
-    T result = 1;
+    ll result = 1;
     while (exp > 0) {
         if (exp & 1) result = (result * base) % modulus;
         base = (base * base) % modulus;
         exp >>= 1;
     }
     return result;
+}
+
+// フィボナッチ数（積み上げ）
+ull fibonacci(ull n) {
+    ull p = 0;
+    ull q = 1;
+    if (n == 0) return p;
+    if (n == 1) return q;
+    for (int i = 0; i < n - 1; i++){
+        ll buf = q;
+        q = p + q;
+        p = buf;
+    }
+    return q;
+}
+
+// リュカ数（積み上げ）
+ull lucas(unsigned int n) {
+    ull p = 2;
+    ull q = 1;
+    if (n == 0) return p;
+    if (n == 1) return q;
+    for (int i = 0; i < n - 1; i++){
+        ll buf = q;
+        q = p + q;
+        p = buf;
+    }
+    return q;
+}
+
+// 平方行列の掛け算
+m22_ll prod_m22(m22_ll x, m22_ll y) {
+    return make_m22(
+            x.first.first * y.first.first + x.first.second * y.second.first,
+            x.first.first * y.first.second + x.first.second * y.second.second,
+            x.second.first * y.first.first + x.second.second * y.second.first,
+            x.second.first * y.first.second + x.second.second * y.second.second
+    );
+}
+
+// 平方行列のべき乗
+m22_ll pow_m22(m22_ll matrix, ull ext) {
+    if (ext == 0) return make_m22(1, 0, 0, 1);
+    else if (ext == 1) return matrix;
+    else if (ext % 2 == 0) {
+        m22_ll buf = prod_m22(matrix, matrix);
+        return pow_m22(buf, ext / 2);
+    } else {
+        m22_ll buf1 = prod_m22(matrix, matrix);
+        return prod_m22(matrix, pow_m22(buf1, ext / 2));
+    }
+}
+
+// 平方行列を文字列にする
+string m22_ll_to_string(m22_ll matrix) {
+    return "[[" + to_string(matrix.first.first) + ", " + to_string(matrix.first.second) + "]"
+           + "[" + to_string(matrix.second.first) + ", " + to_string(matrix.second.second) + "]]";
+}
+
+// フィボナッチ数（行列計算）
+ull fibonacci_m22(ull n) {
+    return pow_m22(make_m22(0, 1, 1, 1), n).first.second;
 }
 
 

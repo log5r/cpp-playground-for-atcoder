@@ -8,6 +8,7 @@ using m22_ll = pair<p_ll, p_ll>;
 
 // ループ
 #define rep(i, n) for(int i=0, i##_len=(n); i<i##_len; ++i)
+#define rrep(i, n) for(int i=1, i##_len=(n); i<=i##_len; ++i)
 #define repr(vec) for (const auto&it: vec)
 #define until(cond) while(!cond)
 

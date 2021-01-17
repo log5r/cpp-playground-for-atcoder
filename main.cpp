@@ -28,7 +28,8 @@ using m22_ll = pair<p_ll, p_ll>;
 // デバッグ出力用
 #define pln(text) cout << text << endl
 #define dbg(label, text) cout << label << ": " << text << endl
-
+#define pstr(text) cout << text
+#define endpstr << endl;
 
 /*  ここから下は関数  */
 
@@ -265,13 +266,40 @@ ull fibonacci_m22(ull n) {
     return pow_m22(make_m22(0, 1, 1, 1), n).first.second;
 }
 
+/* ここからデバッグ用関数 */
+template<typename T>
+std::ostream & operator<<(std::ostream & Str, vector<T> const & vec) {
+    Str << "[";
+    for (int i = 0; i < vec.size(); ++i) {
+        if (i != 0) cout << ", ";
+        cout << vec.at(i);
+    }
+    Str << "]";
+    return Str;
+}
+
+// 使うかどうかは怪しいけどラベルが必要になったらこれ
+template<typename T>
+void dbgp_vector(const string& label, vector<T> vec) {
+    cout << "DEBUG_VECTOR " << label << ": [";
+    for (int i = 0; i < vec.size(); ++i) {
+        if (i != 0) cout << ", ";
+        cout << vec.at(i);
+    }
+    cout << "]" << endl;
+}
 
 int main() {
-
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    ll x, y;
-    ll res = solve_id_eq(111, 30, x, y, 11);
-    cout << x << ", " << y << "(res: " << res << ")" << endl;
+    vector<ll> vl = {1,2,3,4,5,6,7};
+    dbgp_vector("vl" ,vl);
+    cout << vl << endl;
+    vector<string> vs = {"foo", "bar", "baz"};
+    dbgp_vector("vs", vs);
+    cout << vs << endl;
+    vector<vector<string>> vvs = {{"foo", "bar", "baz"}, {"あ", "い"}, {}};
+    cout << vvs << endl;
+    dbgp_vector("vvs", vvs);
 }

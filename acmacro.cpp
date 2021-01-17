@@ -25,10 +25,6 @@ using m22_ll = pair<p_ll, p_ll>;
 // 必要かどうか微妙
 #define UPDATE_NUM(current, challenger) if (challenger > current) current = challenger
 
-// デバッグ出力用
-#define pln(text) cout << text << endl
-#define dbg(label, text) cout << label << ": " << text << endl
-
 
 /*  ここから下は関数  */
 

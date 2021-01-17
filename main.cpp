@@ -70,7 +70,7 @@ ll sum_each_digit(ll n) {
     return sum;
 }
 
-// 一時不定方程式 ax + by = gcd(a, b) を解く
+// 一次不定方程式 ax + by = gcd(a, b) を解く
 ll gcd_ext(ll a, ll b, ll &x, ll &y) {
     if (b == 0) {
         x = 1;
@@ -82,7 +82,7 @@ ll gcd_ext(ll a, ll b, ll &x, ll &y) {
     return d;
 }
 
-// 一時不定方程式 ax + by = c を解く用(上もセット)
+// 一次不定方程式 ax + by = c を解く用(上もセット)
 bool solve_id_eq(ll a, ll b, ll &x, ll &y, ll c) {
     ll res = gcd_ext(a, b, x, y);
     if (c % res) {

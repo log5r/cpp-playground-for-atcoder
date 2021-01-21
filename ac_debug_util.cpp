@@ -3,8 +3,9 @@
 // デバッグ出力用
 #define pln(text) cout << text << endl
 #define dbg(label, text) cout << label << ": " << text << endl
-#define pstr(text) cout << text
-#define endpstr << endl;
+// 入力がめんどいからって作ったけど使うかなぁ...
+#define ppp cout << text
+#define eel << endl
 
 /* ここからデバッグ用定義 */
 template<typename T>

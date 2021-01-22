@@ -49,3 +49,13 @@ vector<string> split_str(const string &s, char delim) {
     if (!item.empty()) tokens.push_back(item);
     return tokens;
 }
+
+// 書式文字列 on C++11
+template <typename ... args_t>
+std::string format(const std::string& fmt, args_t ... args )
+{
+    size_t len = std::snprintf( nullptr, 0, fmt.c_str(), args ... );
+    std::vector<char> buf(len + 1);
+    std::snprintf(&buf[0], len + 1, fmt.c_str(), args ... );
+    return std::string(&buf[0], &buf[0] + len);
+}

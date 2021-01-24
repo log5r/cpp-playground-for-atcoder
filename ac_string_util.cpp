@@ -1,27 +1,25 @@
 #include <bits/stdc++.h>
 
-using namespace std;
-
 // 小文字、大文字変換用
 char to_uppercase_char(char c) { return (char) toupper(c); }
 
 char to_lowercase_char(char C) { return (char) tolower(C); }
 
-string to_uppercase_str(const string &s) {
-    string answer;
+std::string to_uppercase_str(const std::string &s) {
+    std::string answer;
     for (const char &c : s) answer += to_uppercase_char(c);
     return answer;
 }
 
-string to_lowercase_str(const string &s) {
-    string answer;
+std::string to_lowercase_str(const std::string &s) {
+    std::string answer;
     for (const char &c : s) answer += to_lowercase_char(c);
     return answer;
 }
 
-void to_uppercase(string &s) { for (char &i : s) i = to_uppercase_char(i); }
+void to_uppercase(std::string &s) { for (char &i : s) i = to_uppercase_char(i); }
 
-void to_lowercase(string &s) { for (char &c : s) c = to_lowercase_char(c); }
+void to_lowercase(std::string &s) { for (char &c : s) c = to_lowercase_char(c); }
 
 // 数値判定（ちょっとどうなんだろうこれ...）
 bool is_number(char c) {
@@ -35,9 +33,9 @@ int c_to_int(char c) {
 }
 
 // 分割
-vector<string> split_str(const string &s, char delim) {
-    vector<string> tokens;
-    string item;
+std::vector<std::string> split_str(const std::string &s, char delim) {
+    std::vector<std::string> tokens;
+    std::string item;
     for (char c: s) {
         if (c == delim) {
             if (!item.empty()) tokens.push_back(item);
@@ -51,11 +49,10 @@ vector<string> split_str(const string &s, char delim) {
 }
 
 // 書式文字列 on C++11
-template <typename ... args_t>
-std::string format(const std::string& fmt, args_t ... args )
-{
-    size_t len = std::snprintf( nullptr, 0, fmt.c_str(), args ... );
+template<typename ... args_t>
+std::string format(const std::string &fmt, args_t ... args) {
+    size_t len = std::snprintf(nullptr, 0, fmt.c_str(), args ...);
     std::vector<char> buf(len + 1);
-    std::snprintf(&buf[0], len + 1, fmt.c_str(), args ... );
+    std::snprintf(&buf[0], len + 1, fmt.c_str(), args ...);
     return std::string(&buf[0], &buf[0] + len);
 }

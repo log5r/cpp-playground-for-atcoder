@@ -4,14 +4,14 @@
 const long long MOD = 998244353;
 
 struct mint {
-    long long int x;
+    long long int value;
 
-    mint() : x(0) {}
+    mint() : value(0) {}
 
-    explicit mint(long long int x) : x((x % MOD + MOD) % MOD) {}
+    explicit mint(long long int value) : value((value % MOD + MOD) % MOD) {}
 
     mint &fix() {
-        x = (x % MOD + MOD) % MOD;
+        value = (value % MOD + MOD) % MOD;
         return *this;
     }
 
@@ -19,23 +19,23 @@ struct mint {
 
     mint operator~() const { return mint(1) / *this; }
 
-    mint &operator+=(const mint &a) {
-        if ((x += a.x) >= MOD) x -= MOD;
+    mint &operator+=(const mint &others) {
+        if ((value += others.value) >= MOD) value -= MOD;
         return *this;
     }
 
-    mint &operator-=(const mint &a) {
-        if ((x += MOD - a.x) >= MOD) x -= MOD;
+    mint &operator-=(const mint &others) {
+        if ((value += MOD - others.value) >= MOD) value -= MOD;
         return *this;
     }
 
-    mint &operator*=(const mint &a) {
-        (x *= a.x) %= MOD;
+    mint &operator*=(const mint &others) {
+        (value *= others.value) %= MOD;
         return *this;
     }
 
-    mint &operator/=(const mint &a) {
-        (x *= a.pow(MOD - 2).x) %= MOD;
+    mint &operator/=(const mint &others) {
+        (value *= others.pow(MOD - 2).value) %= MOD;
         return *this;
     }
 
@@ -51,12 +51,18 @@ struct mint {
         if (!t) return mint(1);
         mint res = pow(t / 2);
         res *= res;
-        return (t & 1) ? res * mint(x) : res;
+        return (t & 1) ? res * mint(value) : res;
     }
 
-    bool operator<(const mint &a) const { return x < a.x; }
+    bool operator<(const mint &a) const { return value < a.value; }
 
-    bool operator==(const mint &a) const { return x == a.x; }
+    bool operator<=(const mint &a) const { return value <= a.value; }
+
+    bool operator>(const mint &a) const { return value > a.value; }
+
+    bool operator>=(const mint &a) const { return value >= a.value; }
+
+    bool operator==(const mint &a) const { return value == a.value; }
 };
 
 mint ex(mint x, long long int t) {
@@ -64,11 +70,25 @@ mint ex(mint x, long long int t) {
 }
 
 std::istream &operator>>(std::istream &i, mint &a) {
-    i >> a.x;
+    i >> a.value;
     return i;
 }
 
 std::ostream &operator<<(std::ostream &o, const mint &a) {
-    o << a.x;
+    o << a.value;
     return o;
+}
+
+// 組み合わせ数を出力（mod int 版）
+mint comb_count_mint(mint n, mint r) {
+    if (r > n) return mint(0);
+    if (r * mint(2) > n) r = n - r;
+    if (r == mint(0)) return mint(1);
+
+    mint result = n;
+    for (long long int i = 2; mint(i) <= r; ++i) {
+        result *= (n - mint(i) + mint(1));
+        result /= mint(i);
+    }
+    return result;
 }

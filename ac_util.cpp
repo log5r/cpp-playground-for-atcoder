@@ -187,7 +187,7 @@ vector<pair<ll, ll> > prime_factorize(ll N) {
     return res;
 }
 
-// 繰り返し二乗法
+// 冪乗計算
 ll mod_pow(ll base, ll exp, ll modulus) {
     base %= modulus;
     ll result = 1;

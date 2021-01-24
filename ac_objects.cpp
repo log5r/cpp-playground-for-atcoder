@@ -1,17 +1,14 @@
 #include <bits/stdc++.h>
 
-using namespace std;
-using ll = long long int;
-
 // mod int
 const long long MOD = 998244353;
 
 struct mint {
-    ll x;
+    long long int x;
 
     mint() : x(0) {}
 
-    explicit mint(ll x) : x((x % MOD + MOD) % MOD) {}
+    explicit mint(long long int x) : x((x % MOD + MOD) % MOD) {}
 
     mint &fix() {
         x = (x % MOD + MOD) % MOD;
@@ -50,7 +47,7 @@ struct mint {
 
     mint operator/(const mint &a) const { return mint(*this) /= a; }
 
-    mint pow(ll t) const {
+    mint pow(long long int t) const {
         if (!t) return mint(1);
         mint res = pow(t / 2);
         res *= res;
@@ -62,16 +59,16 @@ struct mint {
     bool operator==(const mint &a) const { return x == a.x; }
 };
 
-mint ex(mint x, ll t) {
+mint ex(mint x, long long int t) {
     return x.pow(t);
 }
 
-istream &operator>>(istream &i, mint &a) {
+std::istream &operator>>(std::istream &i, mint &a) {
     i >> a.x;
     return i;
 }
 
-ostream &operator<<(ostream &o, const mint &a) {
+std::ostream &operator<<(std::ostream &o, const mint &a) {
     o << a.x;
     return o;
 }

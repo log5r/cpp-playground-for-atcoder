@@ -262,6 +262,29 @@ ull fibonacci_m22(ull n) {
 }
 
 
+// 各数字が何個入っているか数えるとき用
+vector<vector<long long>> group_count_map(vector<long long> vec) {
+    SORT(vec);
+    vec.push_back(2e9);
+    int latest = vec.front();
+    int rCount = 0;
+    vector<vector<long long>> resMap;
+    for (int i : vec) {
+        if (i != latest) {
+            vector<long long> b(2);
+            b.at(0) = latest;
+            b.at(1) = rCount;
+            resMap.push_back(b);
+
+            latest = i;
+            rCount = 1;
+        } else {
+            rCount++;
+        }
+    }
+    return resMap;
+}
+
 int main() {
 
     ios_base::sync_with_stdio(false);
@@ -271,3 +294,31 @@ int main() {
     ll res = solve_id_eq(111, 30, x, y, 11);
     cout << x << ", " << y << "(res: " << res << ")" << endl;
 }
+
+// Union find 木が必要なとき
+struct union_find {
+    vector<long long> r;
+
+    explicit union_find(long long N) {
+        r = vector<long long>(N, -1);
+    }
+
+    long long root(long long x) {
+        if (r.at(x) < 0) return x;
+        return r.at(x) = root(r.at(x));
+    }
+
+    bool unite(long long x, long long y) {
+        x = root(x);
+        y = root(y);
+        if (x == y) return false;
+        if (r.at(x) > r.at(y)) swap(x, y);
+        r.at(x) += r.at(y);
+        r.at(y) = x;
+        return true;
+    }
+
+    long long size(long long x) {
+        return -r.at(root(x));
+    }
+};

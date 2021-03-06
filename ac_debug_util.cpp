@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 
-// デバッグ出力用
+// お手軽デバッグプリント
+#define varp(var) cout << #var << " : " << var
+// デバッグ出力用その他
 #define pln(text) cout << text << endl
 #define dbg(label, text) cout << label << ": " << text << endl
 // 入力がめんどいからって作ったけど使うかなぁ...

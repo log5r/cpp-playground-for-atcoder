@@ -8,7 +8,8 @@ using m22_ll = pair<p_ll, p_ll>;
 
 // ループ
 #define rep(i, n) for(int i=0, i##_len=(n); i<i##_len; ++i)
-#define rrep(i, n) for(int i=1, i##_len=(n); i<=i##_len; ++i)
+#define rrep(i, n) for (int (i)=(n); (i)>=0; (i)--)
+#define repd(i, x, y) for(int i=x, i##_len=(y); i<=i##_len; ++i)
 #define repr(vec) for (const auto&it: vec)
 #define until(cond) while(!cond)
 
@@ -28,6 +29,12 @@ using m22_ll = pair<p_ll, p_ll>;
 
 /*  ここから下は関数  */
 
+// vector の値を足すだけ
+long long sum_vec_ll(const vector<long long>& vec) {
+    long long ans = 0;
+    for (long long v: vec) ans += v;
+    return ans;
+}
 
 // 最大公約数
 ll gcd(ll a, ll b) {

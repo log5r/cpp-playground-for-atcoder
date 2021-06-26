@@ -141,13 +141,13 @@ ll comb_count_2(ll n, ll r) {
 }
 
 // combination リスト出力用に使えるかもしれない
-vector<vector<int>> comb(int N, int K) {
+vector<vector<long long>> comb(long long N, long long K) {
     string bitmask(K, 1);
     bitmask.resize(N, 0);
-    vector<vector<int>> res = {};
+    vector<vector<long long>> res = {};
     do {
-        vector<int> unit = {};
-        for (int i = 0; i < N; ++i) {
+        vector<long long> unit = {};
+        for (long long i = 0; i < N; ++i) {
             if (bitmask[i]) unit.push_back(i);
         }
         res.push_back(unit);

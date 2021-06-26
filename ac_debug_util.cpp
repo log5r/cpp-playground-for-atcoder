@@ -23,8 +23,8 @@ template<typename T>
 std::ostream & operator<<(std::ostream & Str, vector<T> const & vec) {
     Str << "[";
     for (int i = 0; i < vec.size(); ++i) {
-        if (i != 0) cout << ", ";
-        cout << vec.at(i);
+        if (i != 0) Str << ", ";
+        Str << vec.at(i);
     }
     Str << "]";
     return Str;

@@ -8,9 +8,10 @@ using m22_ll = pair<p_ll, p_ll>;
 
 // ループ
 #define rep(i, n) for(int i=0, i##_len=(n); i<i##_len; ++i)
-#define rrep(i, n) for (int (i)=(n); (i)>=0; (i)--)
-#define repd(i, x, y) for(int i=x, i##_len=(y); i<=i##_len; ++i)
-#define repr(vec) for (const auto&it: vec)
+#define rrep(i, n) for(int i=(n)-1; i>=0; --i)
+#define xrep(i, begin, end) for(int i=(begin), i##_len=(end); i<=i##_len; ++i)
+#define yrep(i, begin, end) for(int i=(begin), i##_len=(end); i>=i##_len; --i)
+#define repr(vec) for (const auto&it: vec) // TODO: もっといい名前をつける
 #define until(cond) while(!cond)
 
 // 配列関連

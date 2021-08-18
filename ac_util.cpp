@@ -14,6 +14,9 @@ using m22_ll = pair<p_ll, p_ll>;
 #define repr(vec) for (const auto&it: vec) // TODO: もっといい名前をつける
 #define until(cond) while(!cond)
 
+// 三項演算子の略記...?
+#define cp3(p,q,l,r,m) ((p)==(q)?(m):(p)<(q)?(l):(r))
+
 // 配列関連
 #define all(x) (x).begin(),(x).end()
 #define SORT(x) sort(all(x))

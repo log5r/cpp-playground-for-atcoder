@@ -321,6 +321,13 @@ vector<vector<long long>> group_count_map(vector<long long> vec) {
     return resMap;
 }
 
+// 回文判定
+bool is_palindrome(const string& s) {
+    string rs = s;
+    reverse(rs.begin(), rs.end());
+    return s == rs;
+}
+
 int main() {
 
     ios_base::sync_with_stdio(false);

@@ -194,8 +194,21 @@ vector<ll> factors(ll n) {
     return res;
 }
 
-// 素因数分解
-vector<pair<ll, ll> > prime_factorize(ll N) {
+// 素因数分解（普通の）
+vector<ll> pfd(ll x) {
+    vector<ll> res;
+    for (ll i = 2; i * i <= x; i++) {
+        while (x % i == 0) {
+            x /= i;
+            res.push_back(i);
+        }
+    }
+    if (x != 1) res.push_back(x);
+    return res;
+}
+
+// 素因数分解（素因数とその数がペアになる版）
+vector<pair<ll, ll>> pfd_vp(ll N) {
     vector<pair<long long, long long> > res;
     for (ll a = 2; a * a <= N; ++a) {
         if (N % a != 0) continue;

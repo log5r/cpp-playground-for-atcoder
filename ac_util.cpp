@@ -168,6 +168,19 @@ bool is_prime(long long N) {
     return true;
 }
 
+// 約数の個数列挙
+template <typename T>
+T count_factors_of(T n) {
+    T ans = 0;
+    for (T i = 1; i * i <= n; ++i) {
+        if (n % i == 0) {
+            ans++;
+            if (n / i != i) ans++;
+        }
+    }
+    return ans;
+}
+
 // 約数列挙
 vector<ll> factors(ll n) {
     vector<ll> res;

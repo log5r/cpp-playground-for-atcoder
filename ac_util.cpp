@@ -26,6 +26,9 @@ using m22_ll = pair<p_ll, p_ll>;
 // 行列計算用
 #define make_m22(a, b, c, d) make_pair(make_pair(a,b), make_pair(c,d))
 
+// 比較用
+#define COMPARE_PAIR_BY_SECOND [](pair<int, int> a, pair<int, int> b) { return a.second != b.second ? a.second < b.second : a.first < b.first; }
+
 // 必要かどうか微妙
 #define UPDATE_NUM(current, challenger) if (challenger > current) current = challenger
 

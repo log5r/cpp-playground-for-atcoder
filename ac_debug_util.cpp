@@ -20,14 +20,15 @@ std::ostream & operator<<(std::ostream & Str, pair<L, R> const & p) {
 }
 
 template<typename T>
-std::ostream & operator<<(std::ostream & Str, vector<T> const & vec) {
-    Str << "[";
-    for (int i = 0; i < vec.size(); ++i) {
-        if (i != 0) Str << ", ";
-        Str << vec.at(i);
+std::ostream & operator<<(std::ostream & oss, vector<T> const & obj) {
+    oss << "[";
+    auto it = obj.cbegin();
+    if (it != obj.cend()) {
+        oss << *it++;
+        while (it != obj.cend()) oss << ',' << *it++;
     }
-    Str << "]";
-    return Str;
+    oss << "]";
+    return oss;
 }
 
 // 使うかどうかは怪しいけどラベルが必要になったらこれ

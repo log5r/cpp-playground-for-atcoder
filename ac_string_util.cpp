@@ -21,16 +21,8 @@ void to_uppercase(std::string &s) { for (char &i : s) i = to_uppercase_char(i); 
 
 void to_lowercase(std::string &s) { for (char &c : s) c = to_lowercase_char(c); }
 
-// 数値判定（ちょっとどうなんだろうこれ...）
-bool is_number(char c) {
-    return 48 <= c && c <= 57;
-}
 
-// char to int （ベータ版、というかもっといい方法ない？）
-int c_to_int(char c) {
-    if (is_number(c)) return c - 48;
-    else return 0; // エラーにしたほうが良くない？
-}
+
 
 // 分割
 std::vector<std::string> split_str(const std::string &s, char delim) {

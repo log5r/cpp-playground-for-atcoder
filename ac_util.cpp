@@ -42,6 +42,16 @@ long long sum_vec_ll(const vector<long long>& vec) {
     return ans;
 }
 
+// K 進法表記の S を、10 進法表記で表す関数
+long long to_decimal(string s, long long base){
+    long long ans = 0;
+    for (char x: s){
+        ans *= base;
+        ans += x - '0';
+    }
+    return ans;
+}
+
 // 最大公約数
 ll gcd(ll a, ll b) {
     ll r = a % b;
@@ -65,18 +75,6 @@ ll lcm_all(const vector<ll> &va) {
     ll ans = 1;
     for (ll a: va) ans = lcm(ans, a);
     return ans;
-}
-
-// 各桁の数値を足す
-ll sum_each_digit(ll n) {
-    ll m;
-    ll sum = 0;
-    while (n > 0) {
-        m = n % 10;
-        sum = sum + m;
-        n = n / 10;
-    }
-    return sum;
 }
 
 // 一時不定方程式 ax + by = gcd(a, b) を解く
@@ -165,9 +163,7 @@ vector<vector<long long>> comb(long long N, long long K) {
 //素数判定
 bool is_prime(long long N) {
     if (N == 1) return false;
-    for (long long i = 2; i * i <= N; ++i) {
-        if (N % i == 0) return false;
-    }
+    for (long long i = 2; i * i <= N; ++i) if (N % i == 0) return false;
     return true;
 }
 

@@ -54,6 +54,7 @@ long long to_decimal(string s, long long base){
 
 // 最大公約数
 ll gcd(ll a, ll b) {
+    if (b == 0ll) return a;
     ll r = a % b;
     return r ? gcd(b, r) : b;
 }

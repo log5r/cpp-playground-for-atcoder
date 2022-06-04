@@ -1,6 +1,5 @@
-//
-// Created by Judau on 2021/10/17.
-//
+#include <bits/stdc++.h>
+using namespace std;
 
 // 数値判定（ちょっとどうなんだろうこれ...）
 bool is_number(char c) {

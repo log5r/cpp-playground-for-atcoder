@@ -8,7 +8,7 @@ struct mint {
 
     mint() : value(0) {}
 
-    mint(long long int value) : value((value % MOD + MOD) % MOD) {}
+    explicit mint(long long int value) : value((value % MOD + MOD) % MOD) {}
 
     mint &fix() {
         value = (value % MOD + MOD) % MOD;
